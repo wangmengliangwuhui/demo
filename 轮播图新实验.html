@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>轮播图新实验</title>
+		<meta charset="UTF-8"/>
+		<style type="text/css">
+			#up{
+				position: absolute;
+				margin-top: 100px;
+				margin-left: 200px;
+				height: 240px;
+				width: 880px;
+			}
+			img{
+				position: relative;
+				border-radius: 20px;
+				margin: auto;
+				height: 240px;
+				width: 880px;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+		<script type="text/javascript">
+			var images=new Array();
+			images[0]="img/轮播1.jpg";
+			images[1]="img/轮播2.jpg";
+			images[2]="img/轮播3.jpg";
+			images[3]="img/轮播4.jpg";
+			$(document).ready(function(){
+			  var i=0;
+			  var timer = setInterval(function(){	  		  	
+				$("img").animate({height:'10px',width: '10px'},"slow",function(){
+					$("img").attr("src",images[i]);
+				});
+				$("img").animate({height:'240px',width: '880px'},"slow");
+				i=i+1;
+				if(i==images.length){i=0;}
+			}, 4000)
+			});
+		</script>
+	</head>
+	<body>
+		<div id="up">
+			<img src="img/轮播1.jpg"/>
+			
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,735 @@
+<html>
+	<head>
+		<title>个人网页模板</title>
+		<meta charset="UTF-8"/>
+		<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+		<script type="text/javascript">
+			//轮播图事件
+				$(document).ready(function(){
+				    var banners=new Array();
+				    banners[0]="img/family1.jpg";
+					banners[1]="img/family2.jpg";
+					banners[2]="img/family3.jpg";
+					banners[3]="img/family4.jpg";
+					banners[4]="img/family5.jpg";
+					/*banners[0]="img/banner1.jpg";
+					banners[1]="img/banner2.jpg";
+					banners[2]="img/banner3.jpg";
+					banners[3]="img/banner4.jpg";
+					banners[4]="img/banner5.jpg";*/
+				    var i=0;
+				    var timer = setInterval(function(){	  		  	
+					$("#banners").attr("src",banners[i]);
+					i=i+1;
+					if(i==banners.length){i=0;}
+				}, 4000)
+				});
+			//最新图片事件			
+				$(document).ready(function(){
+				//用数组存储图片
+					var newPhotos=new Array();
+					newPhotos[0]="img/family1.jpg"
+					newPhotos[1]="img/family2.jpg"
+					newPhotos[2]="img/family3.jpg"
+					newPhotos[3]="img/family4.jpg"
+					newPhotos[4]="img/family5.jpg"
+					newPhotos[5]="img/family6.jpg"
+					/*newPhotos[0]="img/newPhoto1.jpg"
+					newPhotos[1]="img/newPhoto2.jpg"
+					newPhotos[2]="img/newPhoto3.jpg"
+					newPhotos[3]="img/newPhoto4.jpg"
+					newPhotos[4]="img/newPhoto5.jpg"
+					newPhotos[5]="img/newPhoto6.jpg"*/
+				//触发左右键按钮
+					var i=0;
+					//右键
+						 $("#right_button").click(function(){
+						 	if (i<newPhotos.length-2) {
+						 		i=i+1;
+						 	}else{
+						 		i=0;
+						 	}
+						 	$("#down2_small1_img").attr("src",newPhotos[i]);
+						 	$("#down2_small2_img").attr("src",newPhotos[i+1]);
+						 });
+					//左键
+						 $("#left_button").click(function(){
+						 	if (i<newPhotos.length-2) {
+						 		i=i+1;
+						 	}else{
+						 		i=0;
+						 	}
+						 	$("#down2_small1_img").attr("src",newPhotos[i]);
+						 	$("#down2_small2_img").attr("src",newPhotos[i+1]);
+						 });	 
+				});
+			//右面通道
+				$(document).ready(function(){
+					//百度
+					$("#baidu").click(function(){window.open("https://www.baidu.com/");});
+					$("#taobao").click(function(){window.open("https://www.taobao.com/");});
+					$("#aiqiyi").click(function(){window.open("https://www.iqiyi.com/");});
+				});
+			//各页面的触发显示
+				$(document).ready(function(){
+					//首页导航
+					 $("#shouye_nav").click(function() {
+					  $("#shouye").show();
+					 });
+					//今日头条页面跳转
+					 $("").click(function(){window.open("https://www.baidu.com/");});
+				  	//文章页
+					 $("#article_page").hide();
+					 $("#article").click(function() {
+					 	$("#article_page").show();
+					 	$("#shouye").hide();
+					 });
+					//简介页
+					 $("#intro_page").hide();
+					 $("#intro").click(function() {
+					 	$("#intro_page").show();
+					 	$("#shouye").hide();
+					 });
+					//笔记页
+					 $("#note_page").hide();
+					 $("#note").click(function() {
+					 	$("#note_page").show();
+					 	$("#shouye").hide();
+					 });
+					//小游戏界面跳转
+					$("#games_page").hide();
+					$("#games").click(function() {
+					 	$("#games_page").show();
+					 	$("#shouye").hide();
+					 });
+					
+				});
+			//文章页的文章触发
+				$(document).ready(function(){
+					//用数组articles1存储articles1图片
+					var articles1=new Array();
+					articles1[1]="img/article1.png";
+					articles1[2]="img/article2.png";
+					articles1[3]="img/article3.png";
+					articles1[4]="img/article4.png";
+					articles1[5]="img/article5.png";
+					articles1[6]="img/article6.png";
+					$("#articles1-1").click(function(){$("#article_img").attr("src",articles1[1]);});
+					$("#articles1-2").click(function(){$("#article_img").attr("src",articles1[2]);});
+					$("#articles1-3").click(function(){$("#article_img").attr("src",articles1[3]);});
+					$("#articles1-4").click(function(){$("#article_img").attr("src",articles1[4]);});
+					$("#articles1-5").click(function(){$("#article_img").attr("src",articles1[5]);});
+					$("#articles1-6").click(function(){$("#article_img").attr("src",articles1[6]);});
+					//文章articles1的展开与隐藏
+					$("#articles1_articles").hide();
+					$("#articles1").click(function(){
+						$("#articles1_articles").toggle("slow");
+					})
+				});
+			//小游戏界面
+				$(document).ready(function(){
+					var menu = {
+				      "1":["2","4"],
+				      "2":["1","3","5"],
+				      "3":["2","6"],
+				      "4":["1","5","7"],
+				      "5":["2","4","6","8"],
+				      "6":["3","5","9"],
+				      "7":["4","8"],
+				      "8":["5","7","9"],
+				      "9":["6","8"]
+				    }
+					var t12=$("#t12").attr("src");
+				    $('.in').click(function(){
+				      var click_num = $(this).index()+1;
+				      var no_see_num = $('.no_see').index()+1;
+				      var arr = menu[no_see_num];
+				      if(jQuery.inArray(String(click_num), arr)=='-1'){
+				        //这里是无法交换位置的逻辑
+				        alert("这样不能移动哟！");
+				      }else{
+				        var t = $(this).clone();
+				        $('.no_see').before(t);
+				        $(this).before($('.no_see'));
+				        t.before($(this))
+				        t.remove();
+				      }
+				      var t12=$(".in").eq(2);
+				      var t12src=$("t12 img").attr("src");
+				      if (t12src=="img/pintu_01.gif") {
+				      	alert("");
+				      }
+				    });
+				    
+				})
+				//计时器
+					$(document).ready(function(){
+						var timer;
+						$("#start").click(function(){
+							var result=0;
+							timer = setInterval(function(){	  
+								document.textForm.txt.value=result;
+								result=result+1;
+							}, 1000);
+						})
+						$("#stop").click(function(){
+							clearTimeout(timer);
+							var result=document.textForm.txt.value;
+							alert("恭喜你"+result+"秒完成了拼图");
+						})
+						$("#reset").click(function(){
+							document.textForm.txt.value=0;
+							clearTimeout(timer);
+						})
+					});
+				
+		</script>
+		<style type="text/css">
+			#all{
+				position: absolute;
+				top: 0px;
+				left: 165px;
+				margin: auto;
+				height:725px;
+				width: 1200px;
+				background-image: url(img/all.jpg);
+			}
+			#header{
+				position: absolute;
+				top: 0px;
+				left:10px;
+				height: 151px;
+				width: 1180px;
+			}
+				#contact{
+					position: relative;
+					margin-right: 10px;
+					margin-top: 8px;
+					background-color: chocolate;
+					height: 16px;
+					float: right;
+				}
+					#contact span{
+						position: relative;
+						margin: auto;
+						margin-top: 10px;
+						color: white;
+						font-size:10px;
+						letter-spacing: 5px;
+					} 
+			/*各个页面*/
+			#shouye,#article_page,#intro_page,#note_page,#games_page{
+				position: absolute;
+				background-image: url(img/body.jpg);
+				left: 87px;
+				top: 151px;
+				border-radius:20px;
+				height: 485px;
+				width: 1025px;				
+			}
+				/*首页*/
+					#left{
+						position: relative;
+						margin-top: 5px;
+						margin-left: 5px;
+						height: 475px;
+						width: 900px;
+						float: left;
+					}
+						#up{
+							position: relative;
+							margin: auto;
+							margin-top: 5px;
+							height: 240px;
+							width: 880px;
+						}
+							#banners{
+								position: relative;
+								border-radius: 20px;
+								height: 240px;
+								width: 880px;
+							}
+								#nav{
+									position: fixed;
+									top:115px;
+									left: 320px;
+									z-index: 5;
+								}
+									#nav ul li{
+										height: 15px;
+										list-style-type: none;
+										margin-left: 20px;
+										float: left;
+										font-family:"bodoni mt";		
+									}
+										#nav ul li a{
+											color:white;	
+											font-weight: bold;
+											text-decoration:none;
+										}
+										#nav ul li a:hover{color: #B22222;font-size:18px;}
+						#down{
+							background-color: whitesmoke ;
+							position: relative;
+							margin: auto;
+							margin-top: 25px;
+							border-radius: 20px;
+							height: 200px;
+							width: 880px;
+						}
+							#down1,#down2,#down3{
+								position: relative;
+								margin-top: 10px;
+								margin-left: 10px;
+								height: 180px;
+								width: 278px;
+								float: left;
+							}
+								.button{
+									position: relative;
+									margin-top: 5px;
+									margin-left: 10px;
+									border: solid 1px;
+									border-radius: 10px;
+									background: transparent; 				
+							        color:firebrick;					
+							        padding: 5px 5px;					
+						 	        text-align: center;					
+					 		        font-size: 16px;
+					 		        font-family: "bookshelf symbol 7";
+									cursor: pointer;						
+								}
+									#down1_left{
+										background-image:url(img/down1_left.jpg);
+										height:130px;
+										border-top:solid 1px firebrick;
+										width: 70px;
+										float: left;
+									}
+									#down1_right{
+										border-top:solid 1px firebrick;
+										height: 130px;
+										width: 200px;
+										float: left;
+									}
+										#down1_right ul li{
+											height: 15px;
+											list-style-type:disc;
+											margin-left: 1px;	
+											margin-top: 20px;
+											font-family:"bodoni mt";
+											color: #D2691E;
+										}
+								#down2_big{
+									background-color:lightgray;
+									position: relative;
+									margin-top: 7px;
+									border-radius: 20px;
+									height: 140px;
+									width: 278px;
+								}
+									#left_button{
+										position: relative;
+										margin-top: 60px;
+										margin-left: 0px;
+										height:15px;
+										width:19px;
+										float: left;
+									}
+									#right_button{
+										position: relative;
+										margin-top: 60px;
+										margin-left: 0px;
+										border-radius: 10px;
+										height:15px;
+										width:18px;
+										float: left;
+									}
+										#left_button img,#right_button img{
+											border-radius: 10px;
+										}
+									#down2_small1,#down2_small2{
+										position: relative;
+										margin-top:10px;
+										margin-left: 0px;
+										border: solid 5px white;
+										height: 110px;
+										width: 110px;
+										float: left;
+									}
+									#down2_small1_img,#down2_small2_img{
+										position: relative;
+										width:110px;
+										height:110px;
+									}
+								.down3_div{
+									position: relative;
+									margin-top: 35px ;
+									margin-left: 8px;
+									border-radius: 20px;
+									height: 134px;
+									width: 80px;
+									float: left;
+								}
+									.down3_div img{
+										position: relative;
+										width: 100%;
+										height: 100%;
+										border-radius: 20px;
+										opacity: 0.8;
+									}
+									.down3_div img:hover{opacity:1.0;}
+
+					#right{
+						position: relative;
+						margin-top: 5px;
+						height: 475px;
+						width: 114px;
+						float: left;
+					}
+						#right_img{
+						position: relative;
+						margin-top: 80px;
+						border-radius: 30px;
+						}
+						#baidu{
+							position: absolute;
+							top:110px;
+							left: 22px;
+							z-index: 8;
+							height: 15px;
+							width: 80px;
+							font-size: 20px;
+							color: orangered;
+							font-weight: bold;
+						}
+						#taobao{
+							position: absolute;
+							top:160px;
+							left: 22px;
+							z-index: 8;
+							height: 15px;
+							width: 80px;
+							font-size: 20px;
+							color: orangered;
+							font-weight: bold;
+						}
+						#aiqiyi{
+							position: absolute;
+							top:208px;
+							left: 18px;
+							z-index: 8;
+							height: 15px;
+							width: 80px;
+							font-size: 20px;
+							color: orangered;
+							font-weight: bold;
+						}
+						#baidu:hover{font-size:20px;color: red;}
+						#taobao:hover{font-size:20px;color: red;}
+						#aiqiyi:hover{font-size:20px;color: red;}
+				/*文章页*/
+					#article_page_left{		
+						position: relative;
+						margin-top: 5px;
+						margin-left: 5px;
+						height: 475px;
+						width: 800px;
+						float: left;
+						overflow:hidden;
+						overflow-y:auto;
+					}
+						#article_img{
+							position: relative;
+							margin-left: 150px;
+							width: 500px;
+							border-radius: 50px;
+						}
+					#article_page_right{
+						background-color: whitesmoke;
+						border-radius: 20px;
+						position: relative;
+						margin-top: 5px;
+						height: 475px;
+						width: 214px;
+						float: left;
+						overflow:hidden;
+						overflow-y:auto;
+					}
+						#articles1,#articles2{
+							position: relative;
+							border-radius: 10px;
+							background-color: white;
+							padding: 10px;
+							margin-top: 20px;
+							margin-left: 25px;
+							height: 15px;
+							width:100px ;
+							
+						}
+						#article_page_right ul li{
+							margin-top:10px;
+						}
+						#article_page_right ul li:hover{color: red;}
+				/*简介页*/
+					#intro_page_intro{
+						height: 475px;
+						overflow:hidden;
+						overflow-y:auto;
+					}
+				/*笔记页*/
+					#note_page_left{		
+						position: relative;
+						margin-top: 5px;
+						margin-left: 5px;
+						height: 475px;
+						width: 800px;
+						float: left;
+						overflow:hidden;
+						overflow-y:auto;
+					}
+					#note_page_right{
+						background-color: whitesmoke;
+						border-radius: 20px;
+						position: relative;
+						margin-top: 5px;
+						height: 475px;
+						width: 214px;
+						float: left;
+					}
+				/*小游戏界面*/
+					#games_page_left{		
+						position: relative;
+						margin-top: 5px;
+						margin-left: 5px;
+						height: 475px;
+						width: 800px;
+						float: left;
+					}
+						#games_page_left_div{
+							width:450px;
+							height: 450px;
+							margin-left: 75px;
+							margin-top: 15px;
+							float: left;
+						}
+						.in,.no_see{
+							float: left;
+							height: 150px;
+							width: 150px;
+							
+						}
+						#caculartor{
+							position: relative;
+							margin-top: 100px;
+							margin-left:75px;
+							height: 30px;
+							width: 100px;
+							float: left;
+						}
+							#start,#stop,#reset{
+								height:50px;
+								width: 100px;
+								background-color:beige;
+								border-radius: 10px;
+								color: #FF0000;
+								font-size: 20px;
+							}
+							#txt{
+								height: 50px;
+								width: 60px;
+								font-size: 20px;
+								border-radius: 19px;
+							}
+					#games_page_right{
+						background-color: whitesmoke;
+						border-radius: 20px;
+						position: relative;
+						margin-top: 5px;
+						height: 475px;
+						width: 214px;
+						float: left;
+						overflow:hidden;
+						overflow-y:auto;
+					}
+			#footer{
+				position: absolute;
+				top: 636px;
+				left: 50px;
+				height: 50px;
+				width: 1180px;
+			}
+				#footer_span{
+					position: relative;
+					margin-left: 500px;
+					margin-top: 20px;
+					color:white;
+					font-size: 12px;
+					line-height: 20px;
+				}
+		</style>
+	</head>
+	<body>
+		<!--导航栏-->
+			<div id="nav">
+				<ul>
+					<li><a href="" id="shouye_nav">首页</a></li>
+					<li><a href="">逗仔</a></li>
+					<li><a href="">最新电影</a></li>
+					<li><a href="https://www.toutiao.com/" target="_blank">今日头条</a></li>
+					<li><a href="">小游戏</a></li>
+				</ul>
+			</div>
+		<div id="all">
+			<div id="header">
+				<div id="contact">
+					<span>如有疑问请联系</span>
+				</div>
+			</div>
+				<!--首页-->
+				<div id="shouye">
+					<div id="left">
+						<div id="up">
+							<!--<img src="img/banner1.jpg" id="banners"/>-->
+							<img src="img/family1.jpg" id="banners"/>
+							
+						</div>
+						<div id="down">
+							<div id="down1">
+								<input type="button" name="huer" id="huer" value="胡二" class="button" />
+								<input type="button" name="world" id="world" value="新世界" class="button" />
+								<br />
+								<div id="down1_left"></div>
+								<div id="down1_right">
+									<ul>
+										<li><u id="intro">胡二的简介</u></li>
+										<li><u id="article">胡二的文章</u></li>
+										<li><u id="note">胡二的笔记</u></li>
+									</ul>
+								</div>
+							</div>
+							<div id="down2">
+								<span style="color: #D2691E;font-size: 20px;position: relative;margin-top: 5px;">&nbsp;&nbsp;&nbsp;最新图片</span>
+								<br />
+								<div id="down2_big">
+									<!--添加左右键按钮-->
+									<div id="left_button"><img src="img/ljiantou.jpg"/></div>
+									<div id="down2_small1"><img src="img/family1.jpg" id="down2_small1_img"/></div>
+									<div id="down2_small2"><img src="img/family2.jpg" id="down2_small2_img"/></div>
+									<div id="right_button"><img src="img/rjiantou.png"/></div>
+								</div>
+							</div>
+							<div id="down3">
+								<div class="down3_div"><img src="img/youxi.gif" id="games"/></div>
+								<div class="down3_div"><img src="img/photos.jpg"/></div>
+								<div class="down3_div"><p class="down3_div_p">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系</p></div>
+							</div>
+						</div>
+					</div>
+					<div id="right">
+						<div id="baidu" >
+							百度
+						</div>
+						<div id="taobao">
+							淘宝
+						</div>
+						<div id="aiqiyi">
+							爱奇艺
+						</div>
+					</div>
+				</div>
+				<!--简介页-->
+				<div id="intro_page">
+					<div id="intro_page_intro">
+						<img src="img/intro.jpg"/>
+					</div>
+				</div>					
+				<!--文章页-->
+				<div id="article_page">
+					<div id="article_page_left">
+						<img src="img/article1.png" id="article_img"/>
+					</div>
+					<div id="article_page_right">
+						<!--articles1-->
+						<div id="articles1">
+							面对面的星空
+						</div>
+							<div id="articles1_articles">
+								<ul>
+									<li id="articles1-1">面对面的星空1</li>
+									<li id="articles1-2">面对面的星空2</li>
+									<li id="articles1-3">面对面的星空3</li>
+									<li id="articles1-4">面对面的星空4</li>
+									<li id="articles1-5">面对面的星空5</li>
+									<li id="articles1-6">面对面的星空6</li>
+								</ul>
+							</div>
+						<!--articles2-->
+						<div id="articles2">
+							articles2
+						</div>
+					</div>
+				</div>
+				<!--笔记页-->
+				<div id="note_page">
+					<div id="note_page_left">
+						
+					</div>
+					<div id="note_page_right">
+						<ul>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+							<li>00-form表单校验</li>
+						</ul>
+					</div>
+				</div>
+				<!--小游戏界面-->
+				<div id="games_page">
+					<div id="games_page_left">
+						<div id="games_page_left_div">					
+								<div class="in"><img src="img/pintu_02.gif" alt="" /></div>
+							    <div class="in" id="t12"><img src="img/pintu_01.gif" alt=""  /></div>
+							    <div class="no_see"></div>
+							    <div class="in"><img src="img/pintu_04.gif" alt="" /></div>
+							    <div class="in"><img src="img/pintu_06.gif" alt="" /></div>
+							    <div class="in"><img src="img/pintu_05.gif" alt="" /></div>
+							    <div class="in"><img src="img/pintu_09.gif" alt="" /></div>
+							    <div class="in"><img src="img/pintu_07.gif" alt="" /></div>
+							    <div class='in'><img src="img/pintu_08.gif" alt="" /></div>
+						</div>
+						<div id="caculartor">
+							<form action="" method="post" name="textForm">
+								<input type="button" name="start" id="start" value="开始" />
+								<input type="button" name="stop" id="stop" value="完成"  />
+								<input type="text" name="txt" id="txt" value="0" />秒
+								<input type="button" name="reset" id="reset" value="重新开始"/ >
+								
+							</form>
+							
+								
+						</div>
+					</div>
+					<div id="games_page_right">
+						<ul>
+							<li>拼图小游戏</li>
+							<li>迷宫小游戏</li>
+						</ul>
+					</div>
+				</div>
+			<div id="footer">
+				<div id="footer_span">
+					联系电话：xxxxxxxxxxx&nbsp;&nbsp;&nbsp;&nbsp;地址：xxxxxxxxxxxxx
+					<br />
+					本网站创建于2020.2.4
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
